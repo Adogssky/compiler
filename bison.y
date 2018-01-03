@@ -1,8 +1,6 @@
 %{
 #include "main.h"
 #include "node.h"
-vector<double> int_stack;
-vector<char*> id_stack;
 %}
 
 %union{ 
@@ -32,26 +30,34 @@ vector<char*> id_stack;
 %token SMALLER;
 %token IFSY ELSESY WHILESY
 %nonassoc <cmp> CMP;
+%token EOL;
+%token OR;
 
 %%
-statement: FUNC LPARSY body RPARSY {}
+codelist: {}
+	| codelist stmtl EOL {}
+	;
+stmtl: {}
+	|stmt SEMISY stmtl{}
+	; 
+
+stmt: IFSY LSARSY exp RSARSY stmtl {}
+	| IFSY LSARSY exp RSARSY stmtl ELSESY stmt {}
+	| WHILESY LSARSY exp RSARSY stmtl{}
+	| exp {}
 	;
 
-body: init {}
-	|	body init {}
-	|	body calculate {}
+exp: exp CMP exp {}
+	| exp CAL exp {}
+	| LSARSY exp RSARSY {}
+	| OR exp {} 
+	| NUMBER {}
+	| FUNC LSARSY explist RSARSY {}
+	|
+
+explist: exp {}
+	| exp SEMISY exp {}
 	;
-
-init: INTSY IDSY EQUSY NUMBER SEMISY { }
-	|	CHARSY IDSY SEMISY {}
-	;
-
-calculate: FUNC LSARSY IDSY CAL IDSY RSARSY SEMISY 
-{
-}
-	;
-
-
 %%
 
 int main(){
