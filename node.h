@@ -1,7 +1,8 @@
+#ifndef FUCK
+#define FUCK
 #include <iostream>
 #include <vector>
-#include "symbol.h"
-
+using namespace std;
 class ast;
 class numval;
 class charval;
@@ -11,7 +12,23 @@ class fncall;
 class flow;
 class symref;
 class symasgn;
+class symbol;
 
+class symbol{
+	public:
+		char* type;
+		double int_value;
+		char* name;
+		void set_name(char* name){
+			this->name = name;
+		}
+		void set_value(double int_value){
+			this->int_value = int_value;
+		}
+		void set_type(char* type){
+			this->type = type;
+		}
+};
 
 
 enum inside_func{
@@ -92,6 +109,6 @@ ast *newflow(char type, ast *cond, ast *tl, ast *el);
 ast *newcmp(char type, ast *l, ast *r);
 
 double calNum(ast *);
-void fundef(symbol *name, vector<symbol> symbol_list, ast *stmts);
 void treefree(ast *a);
 
+#endif

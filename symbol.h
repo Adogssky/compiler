@@ -37,4 +37,3 @@ void set_symbolList(char* name,char* type){
 		}
 	}
 }
-

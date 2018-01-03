@@ -46,28 +46,25 @@ extern int yydebug;
   enum yytokentype
   {
     FUNC = 258,
-    PLUSSY = 259,
-    SUBSY = 260,
-    EQUSY = 261,
-    MULSY = 262,
-    DIVSY = 263,
-    LPARSY = 264,
-    RPARSY = 265,
-    NUMBER = 266,
-    CHARSY = 267,
-    INTSY = 268,
-    IDSY = 269,
-    SEMISY = 270,
-    LSARSY = 271,
-    RSARSY = 272,
-    PRINTSY = 273,
-    DOUBLESY = 274,
-    LARGER = 275,
-    SMALLER = 276,
-    IFSY = 277,
-    ELSESY = 278,
-    WHILESY = 279,
-    CMP = 280
+    CAL = 259,
+    EQUSY = 260,
+    LPARSY = 261,
+    RPARSY = 262,
+    NUMBER = 263,
+    CHARSY = 264,
+    INTSY = 265,
+    IDSY = 266,
+    SEMISY = 267,
+    LSARSY = 268,
+    RSARSY = 269,
+    PRINTSY = 270,
+    DOUBLESY = 271,
+    LARGER = 272,
+    SMALLER = 273,
+    IFSY = 274,
+    ELSESY = 275,
+    WHILESY = 276,
+    CMP = 277
   };
 #endif
 
@@ -80,12 +77,13 @@ union YYSTYPE
  
 	double d;
 	char* c;
-	ast *a;
-	symbol *s;
+	class ast *a;
+	class symbol *s;
 	int cmp;
-	int fn;
+	char* fn;
+	int cal;
 
-#line 89 "bison.tab.h" /* yacc.c:1909  */
+#line 87 "bison.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

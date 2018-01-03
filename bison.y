@@ -1,6 +1,6 @@
 %{
-#include "node.h"
 #include "main.h"
+#include "node.h"
 vector<int> int_stack;
 vector<char*> id_stack;
 %}
@@ -8,17 +8,15 @@ vector<char*> id_stack;
 %union{ 
 	double d;
 	char* c;
-	ast *a;
-	symbol *s;
+	class ast *a;
+	class symbol *s;
 	int cmp;
-	int fn;
+	char* fn;
+	int cal;
 }
 %token <fn> FUNC;
-%token PLUSSY; 
-%token SUBSY; 
+%token <cal> CAL; 
 %token EQUSY; 
-%token MULSY; 
-%token DIVSY; 
 %token LPARSY; 
 %token RPARSY; 
 %token <d> NUMBER; 
@@ -48,7 +46,7 @@ init: INTSY IDSY EQUSY NUMBER SEMISY { int_stack.push_back($4); id_stack.push_ba
 	|	CHARSY IDSY SEMISY {}
 	;
 
-calculate: PRINTSY LSARSY IDSY PLUSSY IDSY RSARSY SEMISY 
+calculate: PRINTSY LSARSY IDSY CAL IDSY RSARSY SEMISY 
 {int i=0;
 int j=0;
 double n;

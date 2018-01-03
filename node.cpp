@@ -3,6 +3,21 @@
 #include "node.h"
 using namespace std;
 
+vector<symbol> symbol_list;
+void set_symbolList(char* name,char* type){
+	vector<symbol>::iterator v;
+	for(v = symbol_list.begin();v!=symbol_list.end();v++){
+		if(name == (*v).name && type == (*v).type){
+			cout<<name<<"already excist"<<endl;
+		}else{
+			symbol tmp;
+			tmp.set_name(name);
+			tmp.set_type(type);
+			symbol_list.push_back(tmp);
+		}
+	}
+}
+
 ast *newast(char type, ast *l, ast *r){
 	ast *a = new ast();
 	a->type = type;
