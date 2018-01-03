@@ -64,11 +64,12 @@
 /* Copy the first part of user declarations.  */
 #line 1 "bison.y" /* yacc.c:339  */
 
+#include "node.h"
 #include "main.h"
 vector<int> int_stack;
 vector<char*> id_stack;
 
-#line 72 "bison.tab.c" /* yacc.c:339  */
+#line 73 "bison.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -134,7 +135,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 7 "bison.y" /* yacc.c:355  */
+#line 8 "bison.y" /* yacc.c:355  */
  
 	double d;
 	char* c;
@@ -143,7 +144,7 @@ union YYSTYPE
 	int cmp;
 	int fn;
 
-#line 147 "bison.tab.c" /* yacc.c:355  */
+#line 148 "bison.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -160,7 +161,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 164 "bison.tab.c" /* yacc.c:358  */
+#line 165 "bison.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -460,7 +461,7 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    38,    38,    41,    42,    43,    46,    47,    50
+       0,    39,    39,    42,    43,    44,    47,    48,    51
 };
 #endif
 
@@ -1241,43 +1242,43 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 38 "bison.y" /* yacc.c:1646  */
+#line 39 "bison.y" /* yacc.c:1646  */
     {}
-#line 1247 "bison.tab.c" /* yacc.c:1646  */
+#line 1248 "bison.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 41 "bison.y" /* yacc.c:1646  */
+#line 42 "bison.y" /* yacc.c:1646  */
     {}
-#line 1253 "bison.tab.c" /* yacc.c:1646  */
+#line 1254 "bison.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 42 "bison.y" /* yacc.c:1646  */
+#line 43 "bison.y" /* yacc.c:1646  */
     {}
-#line 1259 "bison.tab.c" /* yacc.c:1646  */
+#line 1260 "bison.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 43 "bison.y" /* yacc.c:1646  */
+#line 44 "bison.y" /* yacc.c:1646  */
     {}
-#line 1265 "bison.tab.c" /* yacc.c:1646  */
+#line 1266 "bison.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 46 "bison.y" /* yacc.c:1646  */
+#line 47 "bison.y" /* yacc.c:1646  */
     { int_stack.push_back((yyvsp[-1].d)); id_stack.push_back((yyvsp[-3].c)); }
-#line 1271 "bison.tab.c" /* yacc.c:1646  */
+#line 1272 "bison.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 47 "bison.y" /* yacc.c:1646  */
+#line 48 "bison.y" /* yacc.c:1646  */
     {}
-#line 1277 "bison.tab.c" /* yacc.c:1646  */
+#line 1278 "bison.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 51 "bison.y" /* yacc.c:1646  */
+#line 52 "bison.y" /* yacc.c:1646  */
     {int i=0;
 int j=0;
 double n;
@@ -1294,11 +1295,11 @@ for(m = id_stack.begin(); m != id_stack.end(); m++){
 n = int_stack[i] + int_stack[j];
  cout<<n<<endl;
 }
-#line 1298 "bison.tab.c" /* yacc.c:1646  */
+#line 1299 "bison.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1302 "bison.tab.c" /* yacc.c:1646  */
+#line 1303 "bison.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1526,10 +1527,9 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 70 "bison.y" /* yacc.c:1906  */
+#line 71 "bison.y" /* yacc.c:1906  */
 
 
-#include "node.h"
 int main(){
 	FILE* fp = fopen("test.txt","r");
 	if(fp==NULL)
