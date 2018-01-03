@@ -66,7 +66,7 @@
 
 #include "main.h"
 #include "node.h"
-vector<int> int_stack;
+vector<double> int_stack;
 vector<char*> id_stack;
 
 #line 73 "bison.tab.c" /* yacc.c:339  */
@@ -401,7 +401,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  4
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   23
+#define YYLAST   25
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  23
@@ -485,10 +485,10 @@ static const yytype_uint16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF -8
+#define YYPACT_NINF -9
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-8)))
+  (!!((Yystate) == (-9)))
 
 #define YYTABLE_NINF -1
 
@@ -499,9 +499,9 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -2,     0,     7,    -5,    -8,    -1,     1,    -7,    -8,    -3,
-       6,    -8,     2,    -8,    -8,    -8,     5,     3,     4,    13,
-      -8,     8,     9,    10,    -8
+       0,    -1,     8,    -8,    -9,    -2,     1,    -3,    -9,     2,
+       5,     3,    -9,    -9,    -9,    -9,     7,     6,     9,    14,
+      -9,    11,    10,    13,    -9
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -510,14 +510,14 @@ static const yytype_int8 yypact[] =
 static const yytype_uint8 yydefact[] =
 {
        0,     0,     0,     0,     1,     0,     0,     0,     3,     0,
-       0,     2,     0,     4,     5,     7,     0,     0,     0,     0,
+       0,     0,     2,     4,     5,     7,     0,     0,     0,     0,
        6,     0,     0,     0,     8
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -8,    -8,    -8,    11,    -8
+      -9,    -9,    -9,     4,    -9
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -531,16 +531,16 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-      11,     1,     5,     6,     5,     6,     3,     4,    12,    15,
-       9,    16,    10,    18,    19,    17,    20,    21,    13,    22,
-       0,     0,    24,    23
+      11,     5,     6,     1,    12,     3,     5,     6,     4,     9,
+      16,    13,    10,     0,    15,    18,    17,    19,    21,     0,
+       0,    20,    22,     0,    23,    24
 };
 
 static const yytype_int8 yycheck[] =
 {
-       7,     3,     9,    10,     9,    10,     6,     0,    15,    12,
-      11,     5,    11,     8,    11,    13,    12,     4,     7,    11,
-      -1,    -1,    12,    14
+       3,     9,    10,     3,     7,     6,     9,    10,     0,    11,
+       5,     7,    11,    -1,    12,     8,    13,    11,     4,    -1,
+      -1,    12,    11,    -1,    14,    12
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -548,7 +548,7 @@ static const yytype_int8 yycheck[] =
 static const yytype_uint8 yystos[] =
 {
        0,     3,    24,     6,     0,     9,    10,    25,    26,    11,
-      11,     7,    15,    26,    27,    12,     5,    13,     8,    11,
+      11,     3,     7,    26,    27,    12,     5,    13,     8,    11,
       12,     4,    11,    14,    12
 };
 
@@ -1239,31 +1239,31 @@ yyreduce:
     {
         case 2:
 #line 37 "bison.y" /* yacc.c:1646  */
-    {}
+    {cout<<"statement"<<endl;}
 #line 1244 "bison.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
 #line 40 "bison.y" /* yacc.c:1646  */
-    {}
+    {cout<<"init"<<endl;}
 #line 1250 "bison.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
 #line 41 "bison.y" /* yacc.c:1646  */
-    {}
+    {cout<<"double init"<<endl;}
 #line 1256 "bison.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
 #line 42 "bison.y" /* yacc.c:1646  */
-    {}
+    {cout<<"init double"<<endl;}
 #line 1262 "bison.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
 #line 45 "bison.y" /* yacc.c:1646  */
-    { int_stack.push_back((yyvsp[-1].d)); id_stack.push_back((yyvsp[-3].c)); }
+    { cout<<"init part"<<endl; }
 #line 1268 "bison.tab.c" /* yacc.c:1646  */
     break;
 
@@ -1275,27 +1275,14 @@ yyreduce:
 
   case 8:
 #line 50 "bison.y" /* yacc.c:1646  */
-    {int i=0;
-int j=0;
-double n;
-vector<char*>::iterator v;
-vector<char*>::iterator m;
-for(v = id_stack.begin(); v != id_stack.end(); v++){
-	if(*(*v) ==*((yyvsp[-4].c))) break;
-	i++;
+    {
+cout<<"cal"<<endl;
 }
-for(m = id_stack.begin(); m != id_stack.end(); m++){
-	if(*(*m) == *((yyvsp[-2].c))) break;
-	j++;
-}
-n = int_stack[i] + int_stack[j];
- cout<<n<<endl;
-}
-#line 1295 "bison.tab.c" /* yacc.c:1646  */
+#line 1282 "bison.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1299 "bison.tab.c" /* yacc.c:1646  */
+#line 1286 "bison.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1523,7 +1510,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 69 "bison.y" /* yacc.c:1906  */
+#line 56 "bison.y" /* yacc.c:1906  */
 
 
 int main(){

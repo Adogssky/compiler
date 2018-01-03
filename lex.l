@@ -27,10 +27,10 @@
 "printf" {yylval.fn = strdup("printf"); return FUNC;}
 "(" {return LSARSY;}
 ")" {return RSARSY;}
-[0-9]+ {yylval.d = atof(yytext);return NUMBER;}
+[-+]?[0-9]+ {yylval.d = atof(yytext);return NUMBER;}
 [A-Za-z]+[0-9]* { yylval.c = strdup(yytext);return IDSY;}
-[0-9]+/.[0-9]* {yylval.d = atof(yytext);return NUMBER;}
-[A-Za-z]+ {yylval.fn = strdup(yytext);return FUNC;}
+[-+]?[0-9]+\.?[0-9]* {yylval.d = atof(yytext);return NUMBER;}
+[A-Za-z]+[(][)] {yylval.fn = strdup(yytext);return FUNC;}
 
 
 %%

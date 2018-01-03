@@ -1,7 +1,7 @@
 %{
 #include "main.h"
 #include "node.h"
-vector<int> int_stack;
+vector<double> int_stack;
 vector<char*> id_stack;
 %}
 
@@ -42,26 +42,12 @@ body: init {}
 	|	body calculate {}
 	;
 
-init: INTSY IDSY EQUSY NUMBER SEMISY { int_stack.push_back($4); id_stack.push_back($2); }
+init: INTSY IDSY EQUSY NUMBER SEMISY { }
 	|	CHARSY IDSY SEMISY {}
 	;
 
-calculate: PRINTSY LSARSY IDSY CAL IDSY RSARSY SEMISY 
-{int i=0;
-int j=0;
-double n;
-vector<char*>::iterator v;
-vector<char*>::iterator m;
-for(v = id_stack.begin(); v != id_stack.end(); v++){
-	if(*(*v) ==*($3)) break;
-	i++;
-}
-for(m = id_stack.begin(); m != id_stack.end(); m++){
-	if(*(*m) == *($5)) break;
-	j++;
-}
-n = int_stack[i] + int_stack[j];
- cout<<n<<endl;
+calculate: FUNC LSARSY IDSY CAL IDSY RSARSY SEMISY 
+{
 }
 	;
 
