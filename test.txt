@@ -1,0 +1,1 @@
+main{int xsf = 8; int yfs = 9; printf( xsf + yfs); }

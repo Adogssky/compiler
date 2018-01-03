@@ -1,0 +1,252 @@
+Terminals unused in grammar
+
+   SUBSY
+   MULSY
+   DIVSY
+   DOUBLESY
+   LARGER
+   SMALLER
+
+
+语法
+
+    0 $accept: statement $end
+
+    1 statement: FUNC LPARSY body RPARSY
+
+    2 body: init
+    3     | body init
+    4     | body calculate
+
+    5 init: INTSY IDSY EQUSY NUMBER SEMISY
+    6     | CHARSY IDSY SEMISY
+
+    7 calculate: PRINTSY LSARSY IDSY PLUSSY IDSY RSARSY SEMISY
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+FUNC (258) 1
+PLUSSY (259) 7
+SUBSY (260)
+EQUSY (261) 5
+MULSY (262)
+DIVSY (263)
+LPARSY (264) 1
+RPARSY (265) 1
+NUMBER (266) 5
+CHARSY (267) 6
+INTSY (268) 5
+IDSY (269) 5 6 7
+SEMISY (270) 5 6 7
+LSARSY (271) 7
+RSARSY (272) 7
+PRINTSY (273) 7
+DOUBLESY (274)
+LARGER (275)
+SMALLER (276)
+
+
+Nonterminals, with rules where they appear
+
+$accept (22)
+    左： 0
+statement (23)
+    左： 1, 右： 0
+body (24)
+    左： 2 3 4, 右： 1 3 4
+init (25)
+    左： 5 6, 右： 2 3
+calculate (26)
+    左： 7, 右： 4
+
+
+State 0
+
+    0 $accept: . statement $end
+
+    FUNC  shift, and go to state 1
+
+    statement  转到状态 2
+
+
+State 1
+
+    1 statement: FUNC . LPARSY body RPARSY
+
+    LPARSY  shift, and go to state 3
+
+
+State 2
+
+    0 $accept: statement . $end
+
+    $end  shift, and go to state 4
+
+
+State 3
+
+    1 statement: FUNC LPARSY . body RPARSY
+
+    CHARSY  shift, and go to state 5
+    INTSY   shift, and go to state 6
+
+    body  转到状态 7
+    init  转到状态 8
+
+
+State 4
+
+    0 $accept: statement $end .
+
+    $default  接受
+
+
+State 5
+
+    6 init: CHARSY . IDSY SEMISY
+
+    IDSY  shift, and go to state 9
+
+
+State 6
+
+    5 init: INTSY . IDSY EQUSY NUMBER SEMISY
+
+    IDSY  shift, and go to state 10
+
+
+State 7
+
+    1 statement: FUNC LPARSY body . RPARSY
+    3 body: body . init
+    4     | body . calculate
+
+    RPARSY   shift, and go to state 11
+    CHARSY   shift, and go to state 5
+    INTSY    shift, and go to state 6
+    PRINTSY  shift, and go to state 12
+
+    init       转到状态 13
+    calculate  转到状态 14
+
+
+State 8
+
+    2 body: init .
+
+    $default  reduce using rule 2 (body)
+
+
+State 9
+
+    6 init: CHARSY IDSY . SEMISY
+
+    SEMISY  shift, and go to state 15
+
+
+State 10
+
+    5 init: INTSY IDSY . EQUSY NUMBER SEMISY
+
+    EQUSY  shift, and go to state 16
+
+
+State 11
+
+    1 statement: FUNC LPARSY body RPARSY .
+
+    $default  reduce using rule 1 (statement)
+
+
+State 12
+
+    7 calculate: PRINTSY . LSARSY IDSY PLUSSY IDSY RSARSY SEMISY
+
+    LSARSY  shift, and go to state 17
+
+
+State 13
+
+    3 body: body init .
+
+    $default  reduce using rule 3 (body)
+
+
+State 14
+
+    4 body: body calculate .
+
+    $default  reduce using rule 4 (body)
+
+
+State 15
+
+    6 init: CHARSY IDSY SEMISY .
+
+    $default  reduce using rule 6 (init)
+
+
+State 16
+
+    5 init: INTSY IDSY EQUSY . NUMBER SEMISY
+
+    NUMBER  shift, and go to state 18
+
+
+State 17
+
+    7 calculate: PRINTSY LSARSY . IDSY PLUSSY IDSY RSARSY SEMISY
+
+    IDSY  shift, and go to state 19
+
+
+State 18
+
+    5 init: INTSY IDSY EQUSY NUMBER . SEMISY
+
+    SEMISY  shift, and go to state 20
+
+
+State 19
+
+    7 calculate: PRINTSY LSARSY IDSY . PLUSSY IDSY RSARSY SEMISY
+
+    PLUSSY  shift, and go to state 21
+
+
+State 20
+
+    5 init: INTSY IDSY EQUSY NUMBER SEMISY .
+
+    $default  reduce using rule 5 (init)
+
+
+State 21
+
+    7 calculate: PRINTSY LSARSY IDSY PLUSSY . IDSY RSARSY SEMISY
+
+    IDSY  shift, and go to state 22
+
+
+State 22
+
+    7 calculate: PRINTSY LSARSY IDSY PLUSSY IDSY . RSARSY SEMISY
+
+    RSARSY  shift, and go to state 23
+
+
+State 23
+
+    7 calculate: PRINTSY LSARSY IDSY PLUSSY IDSY RSARSY . SEMISY
+
+    SEMISY  shift, and go to state 24
+
+
+State 24
+
+    7 calculate: PRINTSY LSARSY IDSY PLUSSY IDSY RSARSY SEMISY .
+
+    $default  reduce using rule 7 (calculate)
