@@ -26,7 +26,7 @@ ast *newast(char type, ast *l, ast *r){
 	return a;
 }
 
-ast *newnum(char type, double num_val){
+ast *newnum(double num_val){
 	numval *a = new numval();
 	a->type = 'n';
 	a->num_val = num_val;
@@ -34,21 +34,21 @@ ast *newnum(char type, double num_val){
 
 }
 
-ast *newchar(char type, char char_val ){
+ast *newchar(char char_val ){
 	charval *a = new charval();
 	a->type = 'c';
 	a->char_val = char_val;
 	return (ast *)a;
 }
 
-ast *newvar(char type, char* var_name){
+ast *newvar(char* var_name){
 	var *a = new var();
 	a->type = 'v';
 	a->var_name = var_name;
 	return (ast *)a;
 }
 
-ast *newfunc(char type , ast *l){
+ast *newfunc(ast *l){
 	fncall *a = new fncall();
 	a->type = 'f';
 	a->l = l;

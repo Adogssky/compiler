@@ -98,10 +98,10 @@ class symasgn{
 
 
 ast *newast(char type, ast *l, ast *r);
-ast *newnum(char type, double num_val);
-ast *newchar(char type, char char_val);
-ast *newvar(char type, char* var_name);
-ast *newfunc(char type, ast *l);
+ast *newnum(double num_val);
+ast *newchar(char char_val);
+ast *newvar(char* var_name);
+ast *newfunc(ast *l);
 ast *newcall(symbol *s, ast *l);
 ast *newref(symbol *s);
 ast *newasgn(symbol *s, ast *v);

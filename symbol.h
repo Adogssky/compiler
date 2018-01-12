@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#include "node.h"
 using namespace std;
 
 
@@ -11,6 +11,7 @@ class symbol{
 		char* type;
 		double int_value;
 		char* name;
+		ast *func;
 		void set_name(char* name){
 			this->name = name;
 		}
@@ -22,7 +23,10 @@ class symbol{
 		}
 };
 
+symbol *lookup(char*);
 vector<symbol> symbol_list;
+
+void symlistfree(vector<symbol> symbol_list);
 
 void set_symbolList(char* name,char* type){
 	vector<symbol>::iterator v;
