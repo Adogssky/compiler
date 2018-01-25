@@ -66,7 +66,8 @@ extern int yydebug;
     WHILESY = 276,
     CMP = 277,
     EOL = 278,
-    OR = 279
+    OR = 279,
+    UMINUS = 280
   };
 #endif
 
@@ -85,7 +86,7 @@ union YYSTYPE
 	char* fn;
 	int cal;
 
-#line 89 "bison.tab.h" /* yacc.c:1909  */
+#line 90 "bison.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

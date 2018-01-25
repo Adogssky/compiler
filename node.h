@@ -2,6 +2,8 @@
 #define FUCK
 #include <iostream>
 #include <vector>
+#include <string>
+#include <map>
 using namespace std;
 class ast;
 class numval;
@@ -13,6 +15,10 @@ class flow;
 class symref;
 class symasgn;
 class symbol;
+
+extern map<string,int> hashlist;
+extern vector<symbol*> symbol_list;
+extern vector<string> idlist;
 
 class symbol{
 	public:
@@ -110,5 +116,8 @@ ast *newcmp(char type, ast *l, ast *r);
 
 double calNum(ast *);
 void treefree(ast *a);
+bool id_excist(char* name);
+void addidlist(char* name);
+symbol* lookup(char* sym);
 
 #endif

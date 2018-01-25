@@ -20,7 +20,7 @@
 %token <d> NUMBER; 
 %token CHARSY;
 %token INTSY;
-%token <c> IDSY;
+%token <s> IDSY;
 %token SEMISY;
 %token LSARSY;
 %token RSARSY;
@@ -33,15 +33,16 @@
 %token EOL;
 %token OR;
 
+%nonassoc '|' UMINUS
+
 %type <a> exp stmt stmtl explist
-%type <s> symlist
 
 %start codelist
 %%
 
-stmt: IFSY LSARSY exp RSARSY stmtl {$$ = newflow('I',$3,$5,NULL);}
-	| IFSY LSARSY exp RSARSY stmtl ELSESY stmt {$$ = newflow('I',$3,$5,$7);}
-	| WHILESY LSARSY exp RSARSY stmtl{$$ = newflow('W',$3,$5,NULL);}
+stmt: IFSY LSARSY exp RSARSY LPARSY stmtl RPARSY {$$ = newflow('I',$3,$6,NULL);}
+	| IFSY LSARSY exp RSARSY LPARSY stmtl RPARSY ELSESY stmtl {$$ = newflow('I',$3,$6,$9);}
+	| WHILESY LSARSY exp RSARSY LPARSY stmtl RPARSY{$$ = newflow('W',$3,$6,NULL);}
 	| exp 
 	;
 
@@ -62,13 +63,22 @@ switch($2){
 	}
 }
 	| LSARSY exp RSARSY {$$ = $2;}
+	| '-' exp %prec UMINUS {$$ = newast('M',$2,NULL);}
 	| OR exp {$$ = newast('|',$2,NULL);} 
 	| NUMBER {$$ = newnum($1);}
-	| FUNC LSARSY explist RSARSY {$$ = newfunc($3);}
+	| IDSY {if(id_excist($1->name)){
+			$$ = newref($1);} 
+		else{
+			yyerror("no id");
+			} }
+	| INTSY IDSY EQUSY exp {addidlist($2->name);$$ = newasgn($2,$4);}
+	| DOUBLESY IDSY EQUSY exp {addidlist($2->name); $$ = newasgn($2,$4);}
+	| IDSY EQUSY exp { if(id_excist($1->name)) $$ = newasgn($1,$3);
+			else yyerror("no id");}
 	;
 
-explist: exp {}
-	| exp SEMISY exp {$$ = newast('L',$1,$3);}
+explist: exp 
+	| exp SEMISY explist {$$ = newast('L',$1,$3);}
 	;
 
 codelist:	 {}

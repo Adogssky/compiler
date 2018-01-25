@@ -1,4 +1,5 @@
 %{
+#include "node.h"
 #include "main.h"
 #include "bison.tab.h"
 %}
@@ -28,7 +29,7 @@
 "(" {return LSARSY;}
 ")" {return RSARSY;}
 [-+]?[0-9]+ {yylval.d = atof(yytext);return NUMBER;}
-[A-Za-z]+[0-9]* { yylval.c = strdup(yytext);return IDSY;}
+[A-Za-z]+[0-9]* { yylval.s = lookup(yytext);return IDSY;}
 [-+]?[0-9]+\.?[0-9]* {yylval.d = atof(yytext);return NUMBER;}
 [A-Za-z]+[(][)] {yylval.fn = strdup(yytext);return FUNC;}
 "#" {return EOL;}

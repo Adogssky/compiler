@@ -519,9 +519,10 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "lex.l"
 #line 2 "lex.l"
+#include "node.h"
 #include "main.h"
 #include "bison.tab.h"
-#line 525 "lex.yy.c"
+#line 526 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -739,10 +740,10 @@ YY_DECL
 		}
 
 	{
-#line 6 "lex.l"
+#line 7 "lex.l"
 
 
-#line 746 "lex.yy.c"
+#line 747 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -801,150 +802,150 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 8 "lex.l"
+#line 9 "lex.l"
 {return IFSY;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 9 "lex.l"
+#line 10 "lex.l"
 {return ELSESY;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 10 "lex.l"
+#line 11 "lex.l"
 {return WHILESY;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 11 "lex.l"
+#line 12 "lex.l"
 {return DOUBLESY;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 12 "lex.l"
+#line 13 "lex.l"
 {return CHARSY;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 13 "lex.l"
+#line 14 "lex.l"
 {return INTSY;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 14 "lex.l"
+#line 15 "lex.l"
 {yylval.cal = 1;return CAL;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 15 "lex.l"
+#line 16 "lex.l"
 {yylval.cal = 2;return CAL;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 16 "lex.l"
+#line 17 "lex.l"
 {yylval.cal = 3;return CAL;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 17 "lex.l"
+#line 18 "lex.l"
 {yylval.cal = 4;return CAL;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 18 "lex.l"
+#line 19 "lex.l"
 {return EQUSY;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 19 "lex.l"
+#line 20 "lex.l"
 {return LPARSY;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 20 "lex.l"
+#line 21 "lex.l"
 {return RPARSY;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 21 "lex.l"
+#line 22 "lex.l"
 {yylval.cmp = 1;return CMP;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 22 "lex.l"
+#line 23 "lex.l"
 {yylval.cmp = 2;return CMP;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 23 "lex.l"
+#line 24 "lex.l"
 {yylval.cmp = 3;return CMP;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 24 "lex.l"
+#line 25 "lex.l"
 {yylval.cmp = 4;return CMP;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 25 "lex.l"
+#line 26 "lex.l"
 {yylval.cmp = 5;return CMP;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 26 "lex.l"
+#line 27 "lex.l"
 {return SEMISY;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 27 "lex.l"
+#line 28 "lex.l"
 {yylval.fn = strdup("printf"); return FUNC;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 28 "lex.l"
+#line 29 "lex.l"
 {return LSARSY;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 29 "lex.l"
+#line 30 "lex.l"
 {return RSARSY;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 30 "lex.l"
+#line 31 "lex.l"
 {yylval.d = atof(yytext);return NUMBER;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 31 "lex.l"
-{ yylval.c = strdup(yytext);return IDSY;}
+#line 32 "lex.l"
+{ yylval.s = lookup(yytext);return IDSY;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 32 "lex.l"
+#line 33 "lex.l"
 {yylval.d = atof(yytext);return NUMBER;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 33 "lex.l"
+#line 34 "lex.l"
 {yylval.fn = strdup(yytext);return FUNC;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 34 "lex.l"
+#line 35 "lex.l"
 {return EOL;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 35 "lex.l"
+#line 36 "lex.l"
 {return OR;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 36 "lex.l"
+#line 37 "lex.l"
 ECHO;
 	YY_BREAK
-#line 948 "lex.yy.c"
+#line 949 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1945,7 +1946,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 36 "lex.l"
+#line 37 "lex.l"
 
 
 

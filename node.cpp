@@ -2,9 +2,11 @@
 #include <stdio.h>
 #include "node.h"
 using namespace std;
+map<string,int> hashlist;
+vector<symbol*> symbol_list;
+vector<string> idlist;
 
-vector<symbol> symbol_list;
-void set_symbolList(char* name,char* type){
+/*void set_symbolList(char* name,char* type){
 	vector<symbol>::iterator v;
 	for(v = symbol_list.begin();v!=symbol_list.end();v++){
 		if(name == (*v).name && type == (*v).type){
@@ -16,6 +18,37 @@ void set_symbolList(char* name,char* type){
 			symbol_list.push_back(tmp);
 		}
 	}
+}
+*/
+symbol* lookup(char* sym){
+	string tmp = sym;
+	if(hashlist.find(tmp) == hashlist.end()){
+		cout<<tmp<<"can not be found"<<"create new record"<<endl;
+		symbol *newSym = new symbol();
+		newSym->set_name(sym);
+		symbol_list.push_back(newSym);
+		int index = symbol_list.size();
+		hashlist[tmp] = index - 1;
+		return newSym;
+	}else{
+		cout<<tmp<<"is already excist"<<endl;
+		cout<<tmp<<"index is"<<hashlist[tmp]<<endl;
+		return symbol_list[hashlist[tmp]]; 
+	}
+
+}
+
+bool id_excist(char* name){
+	for(auto v : idlist){
+		if(v == name)
+			return true;	
+	}
+	return false;
+}
+
+void addidlist(char* name){
+	idlist.push_back(name);
+	return;
 }
 
 ast *newast(char type, ast *l, ast *r){
